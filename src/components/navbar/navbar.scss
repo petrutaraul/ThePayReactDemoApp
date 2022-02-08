@@ -1,0 +1,14 @@
+@import "public/styles/fonts";
+@import "public/styles/colors";
+
+.app-navbar {
+  color: $white-color;
+  position: absolute;
+  display: flex;
+  padding: 0 20px;
+  opacity: $opacity-low;
+
+  h1 {
+    font-size: $big-font;
+  }
+}

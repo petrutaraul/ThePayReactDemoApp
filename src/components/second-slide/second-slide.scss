@@ -1,0 +1,40 @@
+@import "public/styles/positions";
+@import "public/styles/fonts";
+
+.app-secondslide {
+  @include max-width-height;
+
+  margin-top: 200px;
+  display: grid;
+  align-items: center;
+  grid-template-rows: 0fr 10fr;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    li {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, 1fr);
+      grid-column-gap: 0px;
+      grid-row-gap: 0px;
+      justify-content: center;
+      align-content: center;
+      justify-items: center;
+      align-items: center;
+
+      span {
+        display: grid;
+        grid-row: 30px;
+        font-weight: 600;
+        font-size: $big-font;
+        grid-row-start: 2;
+      }
+
+      img {
+        width: 120px;
+      }
+    }
+  }
+}
