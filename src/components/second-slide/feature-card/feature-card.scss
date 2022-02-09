@@ -20,7 +20,7 @@
   span {
     display: grid;
     grid-row: 30px;
-    font-weight: 600;
+    font-weight: $strong-text;
     font-size: $big-font;
     grid-row-start: 2;
     opacity: $opacity-low;
