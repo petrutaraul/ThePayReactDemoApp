@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./form.scss";
 import { send } from "emailjs-com";
+import { serviceID, templateID, userID } from "./variables/variables";
 
 function ContactForm() {
   const [toSend, setToSend] = useState({
@@ -11,12 +12,7 @@ function ContactForm() {
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    send(
-      "service_xwpx8dr",
-      "template_vp7du2h",
-      toSend,
-      "user_UCvxPFa5A3sDQ3sfczWWo"
-    )
+    send(serviceID, templateID, toSend, userID)
       .then((response) => {
         console.log("SUCCESS!", response.status, response.text);
         setToSend({
