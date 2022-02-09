@@ -1,10 +1,16 @@
+@import "public/styles/mediaquery";
+
 .app-smartphone {
-  background-image: url("../../../../public/images/smartphone.png");
-  background-repeat: no-repeat;
   width: 465px;
   height: 980px;
+  background-image: url("../../../../public/images/smartphone.png");
+  background-repeat: no-repeat;
 
   display: grid;
   justify-content: center;
   align-content: center;
+
+  @include responsive(small) {
+    width: 100%;
+  }
 }

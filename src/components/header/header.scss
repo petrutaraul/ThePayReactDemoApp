@@ -1,24 +1,46 @@
 @import "public/styles/colors";
 @import "public/styles/positions";
+@import "public/styles/mediaquery";
 
 .app-header {
   @include max-width-height;
-
   display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   justify-content: center;
-  align-content: start;
   justify-items: center;
   align-items: center;
+  grid-auto-flow: row;
+  grid-template-columns: 1fr;
+
+  @include responsive(extraLarge) {
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr;
+    align-content: start;
+  }
 
   &__promotional {
-    margin-left: 20px;
     width: 600px;
+
+    @include responsive(extraLarge) {
+      margin-left: 20px;
+    }
+
+    @include responsive(small) {
+      width: 100%;
+      text-align: center;
+
+      .main-header {
+        font-size: 32px;
+        margin-top: 70px;
+      }
+    }
   }
 
   &__smartphone {
     position: relative;
+
+    @include responsive(small) {
+      width: 100vw;
+    }
   }
 }
