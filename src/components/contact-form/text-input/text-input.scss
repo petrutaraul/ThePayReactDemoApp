@@ -1,0 +1,18 @@
+@import "public/styles/colors";
+@import "public/styles/fonts";
+
+.app-text-input {
+  color: $error;
+  display: grid;
+  font-weight: $strong-text;
+
+  border-radius: 5px;
+  text-align: center;
+  font-weight: $strong-text;
+  border-color: $purple;
+
+  &::placeholder {
+    opacity: 0.8;
+    text-align: center;
+  }
+}
