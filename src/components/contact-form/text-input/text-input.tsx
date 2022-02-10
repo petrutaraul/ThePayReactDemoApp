@@ -13,7 +13,7 @@ function TextInput({
   meta: any;
 }) {
   return (
-    <div className="app-text-input">
+    <div className="app-text-input" data-testid="text-input">
       <input placeholder={`Enter ${meta.label}`} {...handler()} />
       <span>
         {touched && hasError("required") && `${meta.label} is required!`}

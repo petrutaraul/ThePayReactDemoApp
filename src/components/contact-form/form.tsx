@@ -33,11 +33,11 @@ function ContactForm() {
   };
 
   return (
-    <div className="app-contactform">
+    <div className="app-contactform" role="root">
       <FieldGroup
         control={loginForm}
         render={({ invalid }) => (
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit} data-testid="contactform">
             <h1>
               Send us an email <br /> to get a demo
             </h1>
@@ -65,7 +65,12 @@ function ContactForm() {
         )}
       />
       {mailFailed && (
-        <span className="app-contactform__failed">Mail failed!</span>
+        <span
+          className="app-contactform__failed"
+          data-testid="form-fail-message"
+        >
+          Mail failed!
+        </span>
       )}
     </div>
   );
