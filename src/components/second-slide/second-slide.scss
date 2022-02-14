@@ -8,11 +8,19 @@
   margin-top: 200px;
   display: grid;
   align-items: center;
-  grid-template-rows: 0fr 10fr;
+  grid-template-rows: 0fr 0fr;
   color: $white-color;
 
   h1 {
     font-size: $big-font;
+  }
+
+  button {
+    background-color: #fff;
+    width: 100px;
+    height: 40px;
+    margin-left: 40px;
+    font-weight: $strong-text;
   }
 
   &__list {
@@ -25,6 +33,12 @@
 
     @include responsive(extraLarge) {
       grid-template-columns: repeat(3, 300px);
+    }
+  }
+
+  .two-columns {
+    @include responsive(extraLarge) {
+      grid-template-columns: repeat(2, 300px);
     }
   }
 }
