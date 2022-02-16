@@ -11,22 +11,22 @@ function SecondSlide() {
 
   useEffect(() => {
     getDataFeatures().then((features: []) => {
-      if (features) {
+      if (features.length) {
         setFeatures(features);
         console.log(features);
       }
     });
   }, []);
 
+  const nextCardPosition = cardsPostion === 2 ? 3 : 2;
+
   return (
     <div className="app-secondslide">
       <h1>Our app features</h1>
-      {cardsPostion === 2 && (
-        <button onClick={() => setCardsPosition(3)}>Grid - 3</button>
-      )}
-      {cardsPostion === 3 && (
-        <button onClick={() => setCardsPosition(2)}>Grid - 2</button>
-      )}
+      <button onClick={() => setCardsPosition(nextCardPosition)}>
+        Grid - {nextCardPosition}
+      </button>
+
       <ul
         className={`app-secondslide__list ${
           cardsPostion === 2 && "two-columns"
