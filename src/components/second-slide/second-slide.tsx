@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import "./second-slide.scss";
-import { getDataFeatures } from "../../service/slide-data-call";
 import { IFeature } from "../../interfaces/IInterface";
 import FeatureCard from "./feature-card/feature-card";
 import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
