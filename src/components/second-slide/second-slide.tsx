@@ -4,35 +4,30 @@ import "./second-slide.scss";
 import { getDataFeatures } from "../../service/slide-data-call";
 import { IFeature } from "../../interfaces/IInterface";
 import FeatureCard from "./feature-card/feature-card";
+import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
+import { setGridSystem } from "../../actions";
 
 function SecondSlide() {
-  const [features, setFeatures] = useState([]);
-  const [cardsPostion, setCardsPosition] = useState(3);
+  const gridSystem = useSelector((state: RootStateOrAny) => state.gridSystem);
+  const dispatch = useDispatch();
+  const featureResponse = useSelector(
+    (state: RootStateOrAny) => state.featureResponse
+  );
 
-  useEffect(() => {
-    getDataFeatures().then((features: []) => {
-      if (features.length) {
-        setFeatures(features);
-        console.log(features);
-      }
-    });
-  }, []);
-
-  const nextCardPosition = cardsPostion === 2 ? 3 : 2;
+  const nextCardPosition =
+    gridSystem === 2 ? setGridSystem(3) : setGridSystem(2);
 
   return (
     <div className="app-secondslide">
       <h1>Our app features</h1>
-      <button onClick={() => setCardsPosition(nextCardPosition)}>
-        Grid - {nextCardPosition}
+      <button onClick={() => dispatch(nextCardPosition)}>
+        Set Grid to {gridSystem === 2 ? 3 : 2}
       </button>
 
       <ul
-        className={`app-secondslide__list ${
-          cardsPostion === 2 && "two-columns"
-        }`}
+        className={`app-secondslide__list ${gridSystem === 2 && "two-columns"}`}
       >
-        {features.map((feature: IFeature, i) => {
+        {featureResponse.map((feature: IFeature, i: number) => {
           return (
             <FeatureCard title={feature.title} image={feature.image} key={i} />
           );
