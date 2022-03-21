@@ -57,4 +57,5 @@ i18n
     },
   });
 
-export default { resources, i18n };
+const i18Config = { resources, i18n };
+export default i18Config;

@@ -27,6 +27,7 @@ function ContactForm() {
     const mail = e.target.value;
     if (
       mail.match(
+        /* eslint-disable no-useless-escape */
         /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       )
     ) {
@@ -68,6 +69,7 @@ function ContactForm() {
     ) {
       setInvalidBtn(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleChange]);
 
   const { t } = useTranslation();
