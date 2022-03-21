@@ -2,18 +2,6 @@
 @import "public/styles/fonts";
 
 .app-contactform {
-  form {
-    display: grid;
-    gap: 10px;
-    text-align: center;
-
-    button,
-    input {
-      border-radius: 5px;
-      padding: 10px;
-    }
-  }
-
   &__failed {
     color: $error;
     font-weight: $strong-text;

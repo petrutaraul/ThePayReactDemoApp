@@ -19,7 +19,7 @@ function TextInput({
   return (
     <div className="app-text-input" data-testid="text-input">
       <input
-        placeholder={`Enter ${meta.label}`}
+        placeholder={`${meta.label}`}
         {...handler()}
         data-testid={`${getElementsAfterUnderscore(meta.label)}-input`}
       />

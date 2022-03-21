@@ -1,0 +1,16 @@
+@import "public/styles/colors";
+@import "public/styles/fonts";
+
+.country-header {
+  background-color: $transparent-bg;
+  padding: 10px;
+  color: $white-color;
+
+  select {
+    margin: 0 50px;
+  }
+}
+
+.hidden {
+  display: none;
+}

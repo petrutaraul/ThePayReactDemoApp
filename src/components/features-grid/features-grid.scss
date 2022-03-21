@@ -3,16 +3,15 @@
 @import "public/styles/mediaquery";
 @import "public/styles/colors";
 
-.app-secondslide {
-  @include max-width-height;
-  margin-top: 200px;
+.storybook-features-grid {
   display: grid;
-  align-items: center;
-  grid-template-rows: 0fr 0fr;
-  color: $white-color;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 0;
+  padding: 0 20px;
+  justify-content: center;
 
-  h1 {
-    font-size: $big-font;
+  @include responsive(extraLarge) {
+    grid-template-columns: repeat(3, 300px);
   }
 
   .two-columns {

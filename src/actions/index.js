@@ -11,3 +11,10 @@ export const setFeatureResponse = (response) => {
     payload: response,
   };
 };
+
+export const setCountryCode = (country) => {
+  return {
+    type: "SWITCH_COUNTRY_CODE",
+    payload: country,
+  };
+};

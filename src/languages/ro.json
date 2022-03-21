@@ -1,0 +1,10 @@
+{
+  "payment": "Singura aplicatie de plati de care ai nevoie",
+  "sendEmail": "Trimiteti-ne un mail",
+  "form": {
+    "name": "Nume",
+    "message": "Mesaj",
+    "email": "Email"
+  },
+  "ourFeatures": "Caracteristicile aplicatiei noastre"
+}

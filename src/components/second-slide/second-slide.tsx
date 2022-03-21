@@ -1,10 +1,11 @@
 import React from "react";
 
 import "./second-slide.scss";
-import { IFeature } from "../../interfaces/IInterface";
-import FeatureCard from "./feature-card/feature-card";
 import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
 import { setGridSystem } from "../../actions";
+import { Button } from "../button/Button";
+import { useTranslation } from "react-i18next";
+import { FeaturesGrid } from "../features-grid/FeaturesGrid";
 
 function SecondSlide() {
   const gridSystem = useSelector((state: RootStateOrAny) => state.gridSystem);
@@ -16,22 +17,18 @@ function SecondSlide() {
   const nextCardPosition =
     gridSystem === 2 ? setGridSystem(3) : setGridSystem(2);
 
+  const { t } = useTranslation();
+
   return (
     <div className="app-secondslide">
-      <h1>Our app features</h1>
-      <button onClick={() => dispatch(nextCardPosition)}>
-        Set Grid to {gridSystem === 2 ? 3 : 2}
-      </button>
+      <h1>{t("ourFeatures")}</h1>
+      <Button
+        label={`Set Grid to ${gridSystem === 2 ? 3 : 2}`}
+        onClick={() => dispatch(nextCardPosition)}
+        primary={false}
+      />
 
-      <ul
-        className={`app-secondslide__list ${gridSystem === 2 && "two-columns"}`}
-      >
-        {featureResponse.map((feature: IFeature, i: number) => {
-          return (
-            <FeatureCard title={feature.title} image={feature.image} key={i} />
-          );
-        })}
-      </ul>
+      <FeaturesGrid items={featureResponse} templateColumns={gridSystem} />
     </div>
   );
 }

@@ -1,0 +1,13 @@
+{
+  "payment": "The only paymethod app you need for your smartphone",
+  "sendEmail": "Send us an email to get a demo",
+  "form": {
+    "name": "Name",
+    "message": "Message",
+    "email": "Email"
+  },
+  "ourFeatures": "Our app features",
+  "countryHeader": {
+    "changeLanguageText": "Change the language to run your country language"
+  }
+}

@@ -1,29 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./form.scss";
 import { send } from "emailjs-com";
 import { serviceID, templateID, userID } from "./variables/variables";
-import {
-  FormBuilder,
-  FieldGroup,
-  FieldControl,
-  Validators,
-} from "react-reactive-form";
-import TextInput from "./text-input/text-input";
+import { Button } from "../button/Button";
+import { useTranslation } from "react-i18next";
+import ContactField from "./field/field";
 
 function ContactForm() {
   const [mailFailed, setMailFailed] = useState(false);
-
-  const loginForm = FormBuilder.group({
-    from_name: ["", Validators.required],
-    message: ["", Validators.required],
-    your_email: ["", [Validators.required, Validators.email]],
+  const [invalidForm, setInvalidForm] = useState(false);
+  const [invalidBtn, setInvalidBtn] = useState(true);
+  const [validMail, setValidMail] = useState(true);
+  const [toSend, setToSend] = useState({
+    from_name: "",
+    message: "",
+    your_email: "",
   });
 
-  const onSubmit = (e: any) => {
+  const handleChange = (e: any) => {
+    setToSend({ ...toSend, [e.target.name]: e.target.value });
+
+    validateMail(e);
+  };
+
+  const validateMail = (e: any) => {
+    const mail = e.target.value;
+    if (
+      mail.match(
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+    ) {
+      setValidMail(true);
+    } else {
+      setValidMail(false);
+    }
+  };
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    send(serviceID, templateID, loginForm.value, userID)
+    send(serviceID, templateID, toSend, userID)
       .then((response) => {
-        loginForm.reset();
+        setToSend({ from_name: "", message: "", your_email: "" });
+        setInvalidForm(false);
         console.log("SUCCESS!", response.status, response.text);
       })
       .catch((err) => {
@@ -32,47 +50,64 @@ function ContactForm() {
       });
   };
 
+  const onBlur = () => {
+    if (
+      toSend.from_name === "" &&
+      toSend.message === "" &&
+      toSend.your_email === ""
+    ) {
+      setInvalidForm(true);
+    }
+  };
+
+  useEffect(() => {
+    if (
+      toSend.from_name !== "" &&
+      toSend.message !== "" &&
+      toSend.your_email !== ""
+    ) {
+      setInvalidBtn(false);
+    }
+  }, [handleChange]);
+
+  const { t } = useTranslation();
+
   return (
-    <div className="app-contactform" role="root">
-      <FieldGroup
-        control={loginForm}
-        render={({ invalid }) => (
-          <form onSubmit={onSubmit} data-testid="contactform">
-            <h1>
-              Send us an email <br /> to get a demo
-            </h1>
-            <FieldControl
-              name="from_name"
-              render={TextInput}
-              meta={{ label: "From name" }}
-            />
-
-            <FieldControl
-              name="message"
-              render={TextInput}
-              meta={{ label: "Your message" }}
-            />
-
-            <FieldControl
-              name="your_email"
-              render={TextInput}
-              meta={{ label: "Your email" }}
-            />
-            <button type="submit" disabled={invalid}>
-              Submit
-            </button>
-          </form>
-        )}
+    <form
+      onSubmit={onSubmit}
+      className="app-contactform"
+      onBlur={() => onBlur()}
+    >
+      <ContactField
+        name="from_name"
+        placeholder={t("form.name")}
+        value={toSend.from_name}
+        onChange={handleChange}
       />
-      {mailFailed && (
+      <ContactField
+        name="message"
+        placeholder={t("form.message")}
+        value={toSend.message}
+        onChange={handleChange}
+      />
+      <ContactField
+        name="your_email"
+        placeholder={t("form.email")}
+        value={toSend.your_email}
+        onChange={handleChange}
+        validEmail={validMail}
+      />
+      <Button label="Submit" type="submit" primary disabled={invalidBtn} />
+
+      {(invalidForm || mailFailed) && (
         <span
           className="app-contactform__failed"
           data-testid="form-fail-message"
         >
-          Mail failed!
+          {invalidForm ? "Please complete all fields" : "Mail failed!"}
         </span>
       )}
-    </div>
+    </form>
   );
 }
 

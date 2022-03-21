@@ -1,0 +1,31 @@
+@import "public/styles/colors";
+@import "public/styles/fonts";
+
+.storybook-button {
+  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: $strong-text;
+  border: 0;
+  border-radius: 3em;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+
+  &:disabled {
+    background-color: grey;
+    opacity: 0.5;
+  }
+}
+
+.storybook-button--primary {
+  color: $white-color;
+  background-color: $purple;
+  width: 100%;
+}
+
+.storybook-button--secondary {
+  color: #333;
+  background-color: $white-color;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+  width: 140px;
+  height: 40px;
+}
