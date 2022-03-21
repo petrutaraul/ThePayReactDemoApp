@@ -34,6 +34,8 @@ function App() {
       );
       setCountryDataCode(localizeData.country_code.toLowerCase());
     });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { i18n } = useTranslation();
