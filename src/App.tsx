@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
@@ -30,10 +29,10 @@ function App() {
       dispatch(
         setCountryCode({
           name: localizeData.country,
-          code: localizeData.countryCode,
+          code,
         })
       );
-      setCountryDataCode(localizeData.countryCode.toLowerCase());
+      setCountryDataCode(code);
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
