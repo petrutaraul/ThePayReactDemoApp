@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
@@ -25,14 +26,14 @@ function App() {
     });
 
     getUserLocale((localizeData: ILocalizeData) => {
-      const code = localizeData.country_code.toLowerCase();
+      const code = localizeData.countryCode.toLowerCase();
       dispatch(
         setCountryCode({
-          name: localizeData.country_name,
-          code,
+          name: localizeData.country,
+          code: localizeData.countryCode,
         })
       );
-      setCountryDataCode(localizeData.country_code.toLowerCase());
+      setCountryDataCode(localizeData.countryCode.toLowerCase());
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
